@@ -1,0 +1,40 @@
+{
+  "name": "desafio-creatus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build",
+    "test:e2e": "vitest run --dir src/controllers"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20.11.15",
+    "@types/supertest": "^6.0.2",
+    "prisma": "^5.16.1",
+    "supertest": "^6.3.4",
+    "tsup": "^8.0.1",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
+    "vite-tsconfig-paths": "^4.3.1",
+    "vitest": "^1.2.2"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^9.3.1",
+    "@fastify/jwt": "^8.0.0",
+    "@prisma/client": "^5.16.1",
+    "@types/pdfkit": "^0.13.4",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.1",
+    "fastify": "^4.26.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.8.0",
+    "pdfkit": "^0.15.0",
+    "zod": "^3.22.4"
+  }
+}
