@@ -2,6 +2,7 @@ import { User } from "@prisma/client";
 import { UsersRepository } from "../repositories/usersRepository";
 import { compare } from "bcryptjs";
 import { UserNotFoundError } from "../Error/UserNotFoundError";
+import { InvalidCredentialsError } from "../Error/InvalidCredentialsError";
 
 
 interface CreateLoginSessionUseCaseRequest{

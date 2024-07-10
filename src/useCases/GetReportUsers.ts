@@ -1,6 +1,8 @@
 import { hash } from "bcryptjs";
 import { UsersRepository } from "../repositories/usersRepository";
 import { generatePdf } from "../utils/generatePdf";
+import { UserAlreadyExistsError } from "../Error/UserAlreadyExistsError";
+import { UnauthorizedAcessError } from "../Error/UnauthorizedAcessError";
 
 
 interface GetReportUsersUSeCaseRequest {

@@ -3,6 +3,7 @@ import { FastifyRequest } from "fastify";
 import { FastifyReply } from "fastify/types/reply";
 import { z } from "zod";
 import { makeCreateLoginSession } from "../../useCases/factories/makeCreateLoginSessionUseCase";
+import { InternalServerError } from "../../Error/InternalServerError";
 
 const prisma = new PrismaClient()
 

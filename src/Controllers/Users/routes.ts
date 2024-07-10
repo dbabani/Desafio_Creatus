@@ -12,8 +12,8 @@ import { GetReportUsers } from "./GetReportUsers";
 export async function UserRoutes(app: FastifyInstance) {
     app.post("/users",CreateUser)
     app.get("/users",GetUsers)
-    app.get("/users:id",GetUserByID)
-    app.put("/users:id",UpdateUserByID)
-    app.delete("/users:id",DeleteUserByID)
+    app.get("/users/:id",GetUserByID)
+    app.put("/users/:id",UpdateUserByID)
+    app.delete("/users/:id",DeleteUserByID)
     app.get("/users/report",{onRequest: [verifyJwt]},GetReportUsers)
 }

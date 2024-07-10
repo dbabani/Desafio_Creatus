@@ -3,6 +3,7 @@ import { hash } from "bcryptjs";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { makeCreateUser } from "../../useCases/factories/makeCreateUserUseCase";
+import { UserAlreadyExistsError } from "../../Error/UserAlreadyExistsError";
 
 
 export async function CreateUser(request: FastifyRequest, reply: FastifyReply) {
@@ -30,6 +31,7 @@ export async function CreateUser(request: FastifyRequest, reply: FastifyReply) {
         if(error instanceof UserAlreadyExistsError){
             return reply.status(409).send({message:error.message})
         }
+        throw error
     }
 
     return reply.status(201).send({message: "User created Sucessfully"})
