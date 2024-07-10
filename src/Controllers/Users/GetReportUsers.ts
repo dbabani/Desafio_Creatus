@@ -4,29 +4,20 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { IntegerType } from "mongodb";
 import { z } from "zod";
 import { generatePdf } from "../../utils/generatePdf";
-const prisma = new PrismaClient()
+import { makeGetReportUsers } from "../../useCases/factories/makeGetReportUsersUseCase";
 
 
 export async function GetReportUsers(request: FastifyRequest, reply: FastifyReply) {
-    const userID = request.user.sub; 
-    const user = await prisma.user.findFirst({where:{id:userID}})
-    
-    if (user && (user.level === 4 || user.level === 5)) {
-        try {
-            const users = await prisma.user.findMany();
-            if (users.length === 0) {
-                return reply.status(404).send({ message: "No users found" });
-            }
+    try {
+        const userID = request.user.sub; 
+        const GetReportUsersUSeCase = makeGetReportUsers()
 
-            const pdfData = generatePdf(users);
+        const pdfData = await GetReportUsersUSeCase.execute({id:userID})
+        reply.header('Content-Type', 'application/pdf').send(pdfData);
 
-            reply.header('Content-Type', 'application/pdf').send(pdfData);
-        } catch (error) {
-            console.error("Error fetching users:", error);
-            reply.status(500).send({ message: "Internal server error" });
-        }
-    } else {
-        reply.status(403).send({ message: "Unauthorized" });
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        reply.status(500).send({ message: "Internal server error" });
     }
 }
 

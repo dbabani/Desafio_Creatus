@@ -2,7 +2,8 @@ import { PrismaClient } from "@prisma/client";
 import { hash } from "bcryptjs";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-const prisma = new PrismaClient()
+import { makeDeleteUserById } from "../../useCases/factories/makeDeleteUserByIdUseCase";
+import { UserNotFoundError } from "../../Error/UserNotFoundError";
 
 export async function DeleteUserByID(request:FastifyRequest,reply:FastifyReply){
     const DeleteUserByIDParamsSchema = z.object({
@@ -11,13 +12,15 @@ export async function DeleteUserByID(request:FastifyRequest,reply:FastifyReply){
 
     const {id} = DeleteUserByIDParamsSchema.parse(request.params)
 
-    const user = await prisma.user.findFirst({where:{id:id}})
+    try {
+        const deleteUserByIDUseCase = makeDeleteUserById()
 
-    if(!user){
-        return reply.code(400).send({message:"User not Found"})
+        await deleteUserByIDUseCase.execute({id})
+
+    } catch (error) {
+        if(error instanceof UserNotFoundError)
+           return reply.status(404).send({message: error.message})
+        
     }
-
-    await prisma.user.delete({where:{id}})
-
     return reply.status(200).send({message:'User deleted sucessfully'})
 }

@@ -2,6 +2,8 @@ import { PrismaClient } from "@prisma/client";
 import { hash } from "bcryptjs";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
+import { makeUpdateUserById } from "../../useCases/factories/makeUpdateUserByIdUseCase";
+import { UserNotFoundError } from "../../Error/UserNotFoundError";
 const prisma = new PrismaClient()
 
 export async function UpdateUserByID(request:FastifyRequest,reply:FastifyReply){
@@ -20,25 +22,16 @@ export async function UpdateUserByID(request:FastifyRequest,reply:FastifyReply){
     const {id} = UpdateUserByIDParamsShema.parse(request.params)
 
     const user = await prisma.user.findFirst({where:{email}})
-
-    if(!user){
-        return reply.code(400).send({message:"User not Found"})
-    }
-
-    const hashedPassword = await hash(password,8)
-
-    const newUser = await prisma.user.update({
-        where:{
-            id:id
-        },
-        data:{
-            name,
-            email,
-            password:hashedPassword,
-            level
+      
+    try {
+        const UpdateUserByIDUSeCase = makeUpdateUserById()
+        await UpdateUserByIDUSeCase.execute({id,name,email,password,level})
+    } catch (error) {
+        if(error instanceof UserNotFoundError){
+            reply.status(404).send({message:error.message})
         }
         
-    })
-
-    return reply.status(200).send({message:`User ${newUser.email} updated sucessfully`})
+        
+    }
+    return reply.status(200).send({message:`User got updated sucessfully`})
 }
