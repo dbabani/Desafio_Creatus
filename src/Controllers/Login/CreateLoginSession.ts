@@ -9,7 +9,7 @@ const prisma = new PrismaClient()
 export async function CreateLoginSession(request:FastifyRequest,reply:FastifyReply){
     const CreateLoginSessionBodySchema = z.object({
         email:z.string().email(),
-        password:z.string()
+        password:z.string().min(6)
     })
 
     const {email,password} = CreateLoginSessionBodySchema.parse(request.body)

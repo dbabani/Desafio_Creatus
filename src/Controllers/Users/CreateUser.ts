@@ -9,8 +9,10 @@ export async function CreateUser(request: FastifyRequest, reply: FastifyReply) {
     const CreateUserBodySchema = z.object({
         name: z.string(),
         email: z.string().email(),
-        password: z.string(),
-        level: z.number()
+        password: z.string().min(6),
+        level: z.coerce.number().refine(value => value >= 1 && value <= 5, {
+            message: "Level must be between 1 and 5",
+        })
     })
 
     const { name, email, password, level } = CreateUserBodySchema.parse(request.body)

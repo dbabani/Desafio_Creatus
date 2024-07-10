@@ -11,7 +11,9 @@ export async function UpdateUserByID(request:FastifyRequest,reply:FastifyReply){
         name: z.string(),
         email:z.string().email(),
         password:z.string(),
-        level: z.number()
+        level: z.coerce.number().refine(value => value >= 1 && value <= 5, {
+            message: "Level must be between 1 and 5",
+        })
     })
 
     const UpdateUserByIDParamsShema = z.object({
