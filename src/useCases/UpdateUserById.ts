@@ -9,6 +9,7 @@ interface UpdateUserByIDRequest{
     password:string
     level:number
 }
+
 export class UpdateUserByIDUSeCase{
     constructor(private usersRepository:UsersRepository) {}
 

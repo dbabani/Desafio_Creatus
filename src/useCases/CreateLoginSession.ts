@@ -8,9 +8,11 @@ interface CreateLoginSessionUseCaseRequest{
     email:string,
     password:string
 }
+
 interface CreateLoginSessionUseCaseResponse{
     user:User
 }
+
 export class CreateLoginSessionUseCase{
     constructor(private usersRepository:UsersRepository){}
 

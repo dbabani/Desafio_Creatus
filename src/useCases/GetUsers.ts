@@ -5,6 +5,7 @@ import { UserNotFoundError } from "../Error/UserNotFoundError";
 interface GetUsersUseCaseResponse{
     users: User[]
 }
+
 export class GetUsersUSeCase{
     constructor(private usersRepository:UsersRepository) {}
 

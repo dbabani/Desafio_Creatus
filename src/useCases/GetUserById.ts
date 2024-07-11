@@ -5,9 +5,11 @@ import { UserNotFoundError } from "../Error/UserNotFoundError";
 interface GetUserByIDRequest{
     id: string
 }
+
 interface GetUserByIDResponse{
     user: User
 }
+
 export class GetUserByIDUSeCase{
     constructor(private usersRepository:UsersRepository) {}
 

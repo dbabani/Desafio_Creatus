@@ -6,6 +6,7 @@ import { UnauthorizedAcessError } from "../Error/UnauthorizedAcessError";
 interface GetReportUsersUSeCaseRequest {
     id: string
 }
+
 export class GetReportUsersUSeCase {
     constructor(private usersRepository: UsersRepository) { }
 

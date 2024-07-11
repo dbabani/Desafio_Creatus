@@ -4,6 +4,7 @@ import { UserNotFoundError } from "../Error/UserNotFoundError";
 interface DeleteUserByIDRequest{
     id: string
 }
+
 export class DeleteUserByIDUSeCase{
     constructor(private usersRepository:UsersRepository) {}
 

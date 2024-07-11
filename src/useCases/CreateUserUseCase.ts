@@ -1,12 +1,14 @@
 import { hash } from "bcryptjs";
 import { UsersRepository } from "../repositories/usersRepository";
 import { UserAlreadyExistsError } from "../Error/UserAlreadyExistsError";
+
 interface CreateUserUSeCaseRequest{
     name:string,
     email:string,
     password:string,
     level:number
 }
+
 export class CreateUserUSeCase{
     constructor(private usersRepository:UsersRepository) {}
 
