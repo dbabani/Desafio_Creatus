@@ -2,6 +2,7 @@ import fastify from "fastify"
 import { ZodError } from "zod";
 import { env } from "./env/index";
 import fastifyJwt from "@fastify/jwt"
+import fastifyCookie from "@fastify/cookie";
 import { UserRoutes } from "./Controllers/Users/routes";
 import { LoginRoutes } from "./Controllers/Login/routes";
 import { generateUsers } from "./utils/generateUsers";
@@ -10,11 +11,19 @@ export const app = fastify();
 
 //generateUsers() // Apenas para gerar 5 usuarios quando o serviço for inicializado -> Uma funcionalidade adicional(Ative caso precise)
 
-app.register(fastifyJwt,{
-    secret: env.JWT_SECRET 
+app.register(fastifyJwt, {
+    secret: env.JWT_SECRET,
+    cookie:{
+        cookieName:"refreshToken",
+        signed:false
+    },
+    sign:{
+        expiresIn:"10m",
+    }
 })
 app.register(LoginRoutes)
 app.register(UserRoutes)
+app.register(fastifyCookie)
 
 app.setErrorHandler((error, _ , reply) => {
     if(error instanceof ZodError){

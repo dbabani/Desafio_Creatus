@@ -13,6 +13,7 @@ export async function GetReportUsers(request: FastifyRequest, reply: FastifyRepl
     } catch (error) {
         console.error("Error fetching users:", error);
         reply.status(500).send({ message: "Unauthorized acess" });
+        throw error
     }
 
     return reply.status(200).send({message:"PDF Created sucessfully"})

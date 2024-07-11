@@ -22,7 +22,24 @@ export async function CreateLoginSession(request:FastifyRequest,reply:FastifyRep
         })
 
         const token = await reply.jwtSign({email: user.email},{sign:{sub:user.id}})
-        reply.status(201).send({token})
+        
+        const refreshToken = await reply.jwtSign({},{
+            sign:{
+                sub:user.id,
+                expiresIn:"7d"
+            }
+        })
+        
+        reply.status(201)
+        .setCookie("refreshToken",refreshToken,{
+           path:"/",
+           secure:true,
+           sameSite:true,
+           httpOnly:true 
+        })
+        .send({
+            token
+        })
         
     } catch (error) {
         if(error instanceof InvalidCredentialsError){
@@ -31,6 +48,8 @@ export async function CreateLoginSession(request:FastifyRequest,reply:FastifyRep
         console.error(error);
        
     }
+
+    
     
     
 }
