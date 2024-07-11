@@ -1,9 +1,6 @@
 import { hash } from "bcryptjs";
 import { UsersRepository } from "../repositories/usersRepository";
-import { User } from "@prisma/client";
-import { emit } from "process";
 import { UserNotFoundError } from "../Error/UserNotFoundError";
-
 
 interface UpdateUserByIDRequest{
     id: string,
@@ -12,7 +9,6 @@ interface UpdateUserByIDRequest{
     password:string
     level:number
 }
-
 export class UpdateUserByIDUSeCase{
     constructor(private usersRepository:UsersRepository) {}
 

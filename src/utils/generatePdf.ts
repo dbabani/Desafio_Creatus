@@ -7,7 +7,7 @@ export function generatePdf(users: User[]): Buffer {
   const buffers: Buffer[] = [];  
 
   doc.fontSize(12);
-  doc.text("User Report", { align: "center" });
+  doc.text("Users Report", { align: "center" });
   doc.moveDown();
 
   users.forEach((user, index) => {
@@ -23,7 +23,7 @@ export function generatePdf(users: User[]): Buffer {
 
   doc.on('end', () => {
     const buffer = Buffer.concat(buffers);  
-    fs.writeFileSync("PDFUploads/output.pdf", buffer);  
+    fs.writeFileSync("output.pdf", buffer);  
   });
 
   doc.end();  

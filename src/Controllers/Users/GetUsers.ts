@@ -1,12 +1,6 @@
-import { PrismaClient } from "@prisma/client";
-import { hash } from "bcryptjs";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { IntegerType } from "mongodb";
-import { z } from "zod";
 import { makeGetUsers } from "../../useCases/factories/makeGetUsersUseCase";
 import { UserNotFoundError } from "../../Error/UserNotFoundError";
-const prisma = new PrismaClient()
-
 
 export async function GetUsers(request:FastifyRequest,reply:FastifyReply){
     try {
@@ -18,7 +12,7 @@ export async function GetUsers(request:FastifyRequest,reply:FastifyReply){
         if(error instanceof UserNotFoundError){
             return reply.status(404).send({message: error.message})
         }
-        
+        throw error
     }
 
 

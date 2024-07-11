@@ -7,8 +7,6 @@ import { DeleteUserByID } from "./DeleteUserByID";
 import { verifyJwt } from "../middlewares/JWTAuth";
 import { GetReportUsers } from "./GetReportUsers";
 
-
-
 export async function UserRoutes(app: FastifyInstance) {
     app.post("/users",CreateUser)
     app.get("/users",GetUsers)

@@ -1,10 +1,7 @@
-import { PrismaClient } from "@prisma/client";
-import { hash } from "bcryptjs";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { makeCreateUser } from "../../useCases/factories/makeCreateUserUseCase";
 import { UserAlreadyExistsError } from "../../Error/UserAlreadyExistsError";
-
 
 export async function CreateUser(request: FastifyRequest, reply: FastifyReply) {
     const CreateUserBodySchema = z.object({

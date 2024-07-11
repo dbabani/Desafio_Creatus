@@ -3,8 +3,6 @@ import { PrismaClient} from '@prisma/client';
 import { hash } from 'bcryptjs';
 import casual from 'casual';
 import { ObjectId } from 'bson';
-
-
 const prisma = new PrismaClient();
 
 export async function generateUsers() {

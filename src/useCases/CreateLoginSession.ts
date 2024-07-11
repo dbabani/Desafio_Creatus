@@ -4,16 +4,13 @@ import { compare } from "bcryptjs";
 import { UserNotFoundError } from "../Error/UserNotFoundError";
 import { InvalidCredentialsError } from "../Error/InvalidCredentialsError";
 
-
 interface CreateLoginSessionUseCaseRequest{
     email:string,
     password:string
 }
-
 interface CreateLoginSessionUseCaseResponse{
     user:User
 }
-
 export class CreateLoginSessionUseCase{
     constructor(private usersRepository:UsersRepository){}
 

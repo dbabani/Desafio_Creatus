@@ -1,16 +1,10 @@
-import { hash } from "bcryptjs";
 import { UsersRepository } from "../repositories/usersRepository";
-import { generatePdf } from "../utils/generatePdf";
 import { User } from "@prisma/client";
 import { UserNotFoundError } from "../Error/UserNotFoundError";
-
-
 
 interface GetUsersUseCaseResponse{
     users: User[]
 }
-
-
 export class GetUsersUSeCase{
     constructor(private usersRepository:UsersRepository) {}
 
