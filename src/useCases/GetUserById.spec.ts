@@ -1,6 +1,5 @@
 import { expect, describe, it, beforeEach } from 'vitest'
 import { InMemoryUsersRepository } from '../repositories/inMemory/inMemoryUsersRepository'
-import { DeleteUserByIDUSeCase } from './DeleteUserById'
 import { UserNotFoundError } from '../Error/UserNotFoundError'
 import { GetUserByIDUSeCase } from './GetUserById'
 

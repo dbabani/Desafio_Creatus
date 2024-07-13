@@ -1,7 +1,6 @@
 import { compare, hash } from 'bcryptjs'
 import { expect, describe, it, beforeEach } from 'vitest'
 import { InMemoryUsersRepository } from '../repositories/inMemory/inMemoryUsersRepository'
-import { InvalidCredentialsError } from '../Error/InvalidCredentialsError'
 import { CreateUserUSeCase } from './CreateUser'
 import { UserAlreadyExistsError } from '../Error/UserAlreadyExistsError'
 
