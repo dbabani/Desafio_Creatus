@@ -9,7 +9,7 @@
 ![Badge](https://img.shields.io/badge/JWT-^9.0.0-ff69b4?style=for-the-badge&logo=ghost)
 ![Badge](https://img.shields.io/badge/Status-finished-brightgreen?style=for-the-badge&logo=ghost)
 
-<p align="center">O projeto tem o objetivo de implementar de um sistema CRUD de usuários usando as respectivas tecnologias: <b>Fastfy</b>, <b>Prisma</b> e <b>JWT</b></p>
+<p align="center">O projeto tem o objetivo de implementar de um sistema CRUD de usuários usando as respectivas tecnologias: <b>Fastify</b>, <b>Prisma</b> e <b>JWT</b> <b>Vitest</b></p>
 
 ## Instalação de dependências
 
