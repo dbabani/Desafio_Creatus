@@ -6,6 +6,8 @@ import { InvalidCredentialsError } from "../../Error/InvalidCredentialsError";
 
 
 export async function CreateLoginSession(request:FastifyRequest,reply:FastifyReply){
+    try {
+
     const CreateLoginSessionBodySchema = z.object({
         email:z.string().email(),
         password:z.string().min(6)
@@ -13,7 +15,6 @@ export async function CreateLoginSession(request:FastifyRequest,reply:FastifyRep
 
     const {email,password} = CreateLoginSessionBodySchema.parse(request.body)
 
-    try {
         const createLoginSessionUseCase = makeCreateLoginSession()
 
         const {user} = await createLoginSessionUseCase.execute({
@@ -22,7 +23,7 @@ export async function CreateLoginSession(request:FastifyRequest,reply:FastifyRep
         })
 
         const token = await reply.jwtSign({email: user.email},{sign:{sub:user.id}})
-        
+
         const refreshToken = await reply.jwtSign({},{
             sign:{
                 sub:user.id,
@@ -42,11 +43,12 @@ export async function CreateLoginSession(request:FastifyRequest,reply:FastifyRep
         })
         
     } catch (error) {
+
         if(error instanceof InvalidCredentialsError){
             return reply.status(409).send({message:error.message})
         }
         console.error(error);
-       
+        throw error
     }
 
     

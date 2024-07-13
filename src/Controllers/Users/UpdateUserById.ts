@@ -22,7 +22,9 @@ export async function UpdateUserByID(request:FastifyRequest,reply:FastifyReply){
   
     try {
         const UpdateUserByIDUSeCase = makeUpdateUserById()
-        await UpdateUserByIDUSeCase.execute({id,name,email,password,level})
+        const UpdatedUser = await UpdateUserByIDUSeCase.execute({id,name,email,password,level})
+        return reply.status(200).send({UpdatedUser})
+
     } catch (error) {
         if(error instanceof UserNotFoundError){
             reply.status(404).send({message:error.message})
@@ -30,5 +32,5 @@ export async function UpdateUserByID(request:FastifyRequest,reply:FastifyReply){
         throw error
         
     }
-    return reply.status(200).send({message:`User got updated sucessfully`})
+    
 }

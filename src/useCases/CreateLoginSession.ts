@@ -1,7 +1,6 @@
 import { User } from "@prisma/client";
 import { UsersRepository } from "../repositories/usersRepository";
 import { compare } from "bcryptjs";
-import { UserNotFoundError } from "../Error/UserNotFoundError";
 import { InvalidCredentialsError } from "../Error/InvalidCredentialsError";
 
 interface CreateLoginSessionUseCaseRequest{
@@ -24,7 +23,7 @@ export class CreateLoginSessionUseCase{
         const user = await this.usersRepository.findByEmail(email);
 
         if(!user){
-            throw new UserNotFoundError()
+            throw new InvalidCredentialsError()
         }
         const correctUser = await compare(password,user.password)
 
