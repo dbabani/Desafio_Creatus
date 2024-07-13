@@ -79,7 +79,7 @@
         - Obrigatório o envio dos dados `email` e `password` pelo body da aplicação
         
 - GET /users
-     -Listagem de Usuários
+    - Listagem de Usuários
        - Não precisa passar nada pelo body da aplicação
 
 - GET /users/report
