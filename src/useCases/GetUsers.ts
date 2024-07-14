@@ -1,6 +1,6 @@
-import { UsersRepository } from "../../repositories/usersRepository";
+import { UsersRepository } from "../repositories/usersRepository";
 import { User } from "@prisma/client";
-import { UserNotFoundError } from "../../Error/UserNotFoundError";
+import { UserNotFoundError } from "../Error/UserNotFoundError";
 
 interface GetUsersUseCaseResponse{
     users: User[]

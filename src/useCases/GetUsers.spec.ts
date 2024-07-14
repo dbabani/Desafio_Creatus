@@ -1,6 +1,6 @@
 import { expect, describe, it, beforeEach } from 'vitest'
-import { InMemoryUsersRepository } from '../../repositories/inMemory/inMemoryUsersRepository'
-import { UserNotFoundError } from '../../Error/UserNotFoundError'
+import { InMemoryUsersRepository } from '../repositories/inMemory/inMemoryUsersRepository'
+import { UserNotFoundError } from '../Error/UserNotFoundError'
 import { GetUsersUSeCase } from './GetUsers'
 
 let usersRepository: InMemoryUsersRepository

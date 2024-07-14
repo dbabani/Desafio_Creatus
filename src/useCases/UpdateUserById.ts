@@ -1,6 +1,6 @@
 import { hash } from "bcryptjs";
-import { UsersRepository } from "../../repositories/usersRepository";
-import { UserNotFoundError } from "../../Error/UserNotFoundError";
+import { UsersRepository } from "../repositories/usersRepository";
+import { UserNotFoundError } from "../Error/UserNotFoundError";
 import { User } from "@prisma/client";
 
 interface UpdateUserByIDRequest{
@@ -23,7 +23,6 @@ export class UpdateUserByIDUSeCase{
             throw new UserNotFoundError()
         }
     
-
     const hashedPassword = await hash(password,8)
 
     const UpdatedUser = await this.usersRepository.updateById(id,{

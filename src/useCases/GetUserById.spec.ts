@@ -1,18 +1,18 @@
 import { expect, describe, it, beforeEach } from 'vitest'
-import { InMemoryUsersRepository } from '../../repositories/inMemory/inMemoryUsersRepository'
-import { DeleteUserByIDUSeCase } from './DeleteUserById'
-import { UserNotFoundError } from '../../Error/UserNotFoundError'
+import { InMemoryUsersRepository } from '../repositories/inMemory/inMemoryUsersRepository'
+import { UserNotFoundError } from '../Error/UserNotFoundError'
+import { GetUserByIDUSeCase } from './GetUserById'
 
 let usersRepository: InMemoryUsersRepository
-let sut: DeleteUserByIDUSeCase
+let sut: GetUserByIDUSeCase
 
-describe('Delete User By ID Use Case', () => {
+describe('Get User By ID Use Case', () => {
   beforeEach(() => {
     usersRepository = new InMemoryUsersRepository()
-    sut = new DeleteUserByIDUSeCase(usersRepository)
+    sut = new GetUserByIDUSeCase(usersRepository)
   })
 
-  it("should delete a user by its ID", async () => {
+  it("should find a user by its ID", async () => {
     const user = await usersRepository.create({
       id: '6691b128c2a40a2b4f021de2',
       name: "Dhruv",
@@ -23,8 +23,8 @@ describe('Delete User By ID Use Case', () => {
 
     await sut.execute({ id: user.id })
 
-    const deletedUser = await usersRepository.findById(user.id)
-    expect(deletedUser).toBeNull()
+    const createdUser = await usersRepository.findById(user.id)
+    expect(createdUser?.id).toEqual(expect.any(String))
   })
 
   it("should throw UserNotFoundError if user does not exist", async () => {

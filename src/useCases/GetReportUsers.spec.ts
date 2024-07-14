@@ -1,7 +1,7 @@
 import { expect, describe, it, beforeEach, vi, MockedFunction } from 'vitest'
-import { InMemoryUsersRepository } from '../../repositories/inMemory/inMemoryUsersRepository'
-import { UnauthorizedAcessError } from '../../Error/UnauthorizedAcessError'
-import { generatePdf } from '../../utils/generatePdf'
+import { InMemoryUsersRepository } from '../repositories/inMemory/inMemoryUsersRepository'
+import { UnauthorizedAcessError } from '../Error/UnauthorizedAcessError'
+import { generatePdf } from '../utils/generatePdf'
 import { GetReportUsersUSeCase } from './GetReportUsers'
 
 vi.mock('../utils/generatePdf')
