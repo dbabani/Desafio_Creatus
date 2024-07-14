@@ -1,5 +1,5 @@
-import { UsersRepository } from "../repositories/usersRepository";
-import { UserNotFoundError } from "../Error/UserNotFoundError";
+import { UsersRepository } from "../../repositories/usersRepository";
+import { UserNotFoundError } from "../../Error/UserNotFoundError";
 
 interface DeleteUserByIDRequest{
     id: string

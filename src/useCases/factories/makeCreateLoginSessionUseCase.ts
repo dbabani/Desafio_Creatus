@@ -1,5 +1,5 @@
 import { PrismaUsersRepository } from "../../repositories/prisma/prismaUserRepository";
-import { CreateLoginSessionUseCase } from "../CreateLoginSession";
+import { CreateLoginSessionUseCase } from "../Users/CreateLoginSession";
 
 
 export  function makeCreateLoginSession(){

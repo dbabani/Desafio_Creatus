@@ -1,8 +1,8 @@
-import { UsersRepository } from "../repositories/usersRepository";
-import { generatePdf } from "../utils/generatePdf";
-import { UserAlreadyExistsError } from "../Error/UserAlreadyExistsError";
-import { UnauthorizedAcessError } from "../Error/UnauthorizedAcessError";
-import { UserNotFoundError } from "../Error/UserNotFoundError";
+import { UsersRepository } from "../../repositories/usersRepository";
+import { generatePdf } from "../../utils/generatePdf";
+import { UserAlreadyExistsError } from "../../Error/UserAlreadyExistsError";
+import { UnauthorizedAcessError } from "../../Error/UnauthorizedAcessError";
+import { UserNotFoundError } from "../../Error/UserNotFoundError";
 
 interface GetReportUsersUSeCaseRequest {
     id: string

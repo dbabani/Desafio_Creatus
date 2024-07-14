@@ -89,16 +89,16 @@
   
 
         
-- UPDATE /users/:idUser
+- UPDATE /users/:id
     - Altera os dados do usuário
         - Obrigatório o envio de todos os dados de um Usuário  pelo body da aplicação
             - Caso não seja passado nenhum dos dados, retorna um erro
 
-- DELETE /users/:idUser
+- DELETE /users/:id
     - Exclui o usuário informado nos parametros da rota
         - Deve ser informado no parametro da rota o `id` do usuário que deve ser excluído
         
-- GET /users/:idUser
+- GET /users/:id
     - Obtém o usuário informado nos parametros da rota
       -  Deve ser informado no parametro da rota o `id` do usuário que deve ser obtido
      
@@ -120,7 +120,7 @@
   
 - [x] Deve ser possível listar um usuário unico  
 
-- [x] Deve ser possivel gerar um PDF, onde contém todos os dados de todos os usuários
+- [x] Deve ser possivel gerar um PDF, onde contém  dados de todos os usuários
 
 - [x] Implementação de Hash de senha
  

@@ -1,6 +1,6 @@
 import { hash } from "bcryptjs";
-import { UsersRepository } from "../repositories/usersRepository";
-import { UserNotFoundError } from "../Error/UserNotFoundError";
+import { UsersRepository } from "../../repositories/usersRepository";
+import { UserNotFoundError } from "../../Error/UserNotFoundError";
 import { User } from "@prisma/client";
 
 interface UpdateUserByIDRequest{
